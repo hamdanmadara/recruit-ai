@@ -1,0 +1,4 @@
+/* App-level styles - kept minimal, component styles are co-located */
+#root {
+  min-height: 100vh;
+}

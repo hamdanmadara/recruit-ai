@@ -1,0 +1,19 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.card-header {
+  margin-bottom: 24px;
+}
+
+.card-title {
+  margin-bottom: 4px;
+}
+
+.card-description {
+  font-size: 13px;
+  color: var(--text-muted);
+}

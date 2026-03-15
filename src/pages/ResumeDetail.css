@@ -1,0 +1,312 @@
+.back-arrow {
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  transition: color 0.2s;
+}
+
+.back-arrow:hover {
+  color: var(--primary-light);
+}
+
+.page-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.resume-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.resume-left-col,
+.resume-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Profile Card */
+.profile-card .card-header {
+  display: none;
+}
+
+.profile-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.profile-title-loc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.profile-score {
+  text-align: right;
+}
+
+.score-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent-green);
+  display: block;
+}
+
+.score-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.profile-section {
+  margin-bottom: 24px;
+}
+
+.profile-section:last-child {
+  margin-bottom: 0;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-years {
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.edu-degree {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.edu-institution {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.contact-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Experience Card */
+.experience-card .card-header {
+  display: none;
+}
+
+.exp-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-item {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(42, 45, 58, 0.5);
+}
+
+[data-theme='light'] .exp-item {
+  border-bottom-color: var(--border);
+}
+
+.exp-item.last {
+  border-bottom: none;
+}
+
+.exp-item:first-child {
+  padding-top: 0;
+}
+
+.exp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.exp-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.exp-company {
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.exp-duration {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.exp-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Resume Preview */
+.resume-preview-card .card-header {
+  display: none;
+}
+
+.resume-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.resume-preview-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.resume-placeholder {
+  background: #1a1c24;
+  border-radius: 10px;
+  min-height: 500px;
+  padding: 32px;
+}
+
+[data-theme='light'] .resume-placeholder {
+  background: #f0f1f6;
+}
+
+.skel-line {
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skel-title {
+  height: 18px;
+  background: var(--border);
+}
+
+.skel-text {
+  height: 8px;
+  background: var(--border);
+}
+
+.skel-section {
+  margin-top: 16px;
+}
+
+.skel-heading {
+  height: 16px;
+  background: var(--border);
+  margin-bottom: 10px;
+}
+
+.skel-body {
+  height: 10px;
+  background: var(--input-bg);
+}
+
+/* AI Summary */
+.ai-summary-card .card-header {
+  display: none;
+}
+
+.ai-summary-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.assessment-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assessment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.assessment-active {
+  background: rgba(46, 213, 115, 0.1);
+  color: var(--accent-green);
+}
+
+.assessment-draft {
+  background: rgba(255, 165, 2, 0.1);
+  color: var(--accent-orange);
+}
+
+@media (max-width: 1100px) {
+  .resume-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .page-header-actions .btn {
+    width: 100%;
+  }
+
+  .profile-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .profile-score {
+    text-align: left;
+  }
+}

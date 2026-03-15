@@ -1,0 +1,106 @@
+.candidate-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.candidate-exp {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.candidate-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.skills-more {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.match-score {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.match-score.high {
+  color: var(--accent-green);
+}
+
+.match-score.medium {
+  color: var(--accent-orange);
+}
+
+.match-score.low {
+  color: var(--text-muted);
+}
+
+.view-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-btn:hover {
+  background: var(--primary-glow);
+  border-color: var(--primary);
+  color: var(--primary-light);
+}
+
+.position-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary-light);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.position-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.filter-dropdown {
+  margin-bottom: 0;
+  min-width: 140px;
+}
+
+.filter-dropdown .dropdown-popover {
+  right: 0;
+  left: auto;
+  min-width: 200px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .shortlisted-table th:nth-child(3),
+  .shortlisted-table td:nth-child(3),
+  .shortlisted-table th:nth-child(4),
+  .shortlisted-table td:nth-child(4) {
+    display: none;
+  }
+}
