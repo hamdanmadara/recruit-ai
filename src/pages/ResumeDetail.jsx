@@ -15,37 +15,81 @@ import Card from '../components/ui/Card';
 import Avatar from '../components/ui/Avatar';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
-import { candidateProfile, candidates } from '../data/mockData';
+import { candidateProfile, candidates, positions } from '../data/mockData';
 import './ResumeDetail.css';
 
-function ProfileCard({ profile }) {
+function computePositionSkillMatch(candidate, position) {
+  if (!candidate || !position) return null;
+  const norm = (s) => s.toLowerCase().trim();
+  const positionSkills = position.skills ?? [];
+  const candSet = new Set((candidate.skills ?? []).map(norm));
+  const matched = positionSkills.filter((s) => candSet.has(norm(s)));
+  const missing = positionSkills.filter((s) => !candSet.has(norm(s)));
+  return { matched, missing };
+}
+
+function ProfileCard({ profile, candidateRow, skillMatch }) {
+  const name = candidateRow?.name ?? profile.name;
+  const initials = candidateRow?.initials ?? profile.initials;
+  const title = candidateRow?.title ?? profile.title;
+  const location = candidateRow?.location ?? profile.location;
+  const score = candidateRow?.matchScore ?? profile.matchScore;
+
   return (
     <Card className="profile-card">
       <div className="profile-top">
         <div className="profile-info">
-          <Avatar initials={profile.initials} size="lg" />
+          <Avatar initials={initials} size="lg" />
           <div>
-            <h2 className="profile-name">{profile.name}</h2>
+            <h2 className="profile-name">{name}</h2>
             <p className="profile-title-loc">
-              {profile.title} &middot; {profile.location}
+              {title} &middot; {location}
             </p>
           </div>
         </div>
         <div className="profile-score">
-          <span className="score-value">{profile.matchScore}%</span>
+          <span className="score-value">{score}%</span>
           <span className="score-label">Match Score</span>
         </div>
       </div>
 
       <div className="profile-section">
-        <h4 className="section-label">Skills</h4>
-        <div className="skills-list">
-          {profile.skills.map((s, i) => (
-            <Badge key={i} variant="skill-lg">
-              {s.name} <span className="skill-years">{s.years}</span>
-            </Badge>
-          ))}
-        </div>
+        <h4 className="section-label">Match Skills</h4>
+        {skillMatch ? (
+          <>
+            <div className="skills-list">
+              {skillMatch.matched.length > 0 ? (
+                skillMatch.matched.map((s, i) => (
+                  <Badge key={i} variant="skill-lg">
+                    {s}
+                  </Badge>
+                ))
+              ) : (
+                <p className="skills-empty">No overlap with position requirements yet</p>
+              )}
+            </div>
+            <h4 className="section-label section-label-sub">Missing skills</h4>
+            <div className="skills-list skills-list-missing">
+              {skillMatch.missing.length > 0 ? (
+                skillMatch.missing.map((s, i) => (
+                  <Badge key={i} variant="closed" className="skill-missing-badge">
+                    {s}
+                  </Badge>
+                ))
+              ) : (
+                <p className="skills-empty">None — matches all listed position skills</p>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="skills-list">
+            {profile.skills.map((s, i) => (
+              <Badge key={i} variant="skill-lg">
+                {s.name} <span className="skill-years">{s.years}</span>
+              </Badge>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="profile-section">
@@ -156,6 +200,11 @@ export default function ResumeDetail() {
   const { id } = useParams();
   const profile = candidateProfile;
   const candidateRow = candidates.find((c) => c.id === id);
+  const position =
+    candidateRow != null
+      ? positions.find((p) => p.id === candidateRow.positionId)
+      : null;
+  const skillMatch = computePositionSkillMatch(candidateRow, position);
 
   const goBack = () => {
     if (candidateRow?.positionId != null) {
@@ -176,7 +225,9 @@ export default function ResumeDetail() {
             Candidate Profile
           </h1>
           <p className="page-subtitle">
-            Senior Frontend Developer &middot; {profile.name}
+            {candidateRow
+              ? `${candidateRow.title} · ${candidateRow.name}`
+              : `${profile.title} · ${profile.name}`}
           </p>
         </div>
         <div className="page-header-actions">
@@ -195,15 +246,19 @@ export default function ResumeDetail() {
 
       <div className="resume-detail-grid">
         <div className="resume-left-col">
-          <ProfileCard profile={profile} />
+          <ProfileCard
+            profile={profile}
+            candidateRow={candidateRow}
+            skillMatch={skillMatch}
+          />
           <ExperienceCard experience={profile.experience} />
         </div>
         <div className="resume-right-col">
-          <ResumePreview />
           <AISummaryCard
             summary={profile.aiSummary}
             assessments={profile.assessments}
           />
+          <ResumePreview />
         </div>
       </div>
     </AppLayout>
