@@ -217,15 +217,13 @@
 }
 
 @media (max-width: 768px) {
-  .candidates-table th:nth-child(2),
-  .candidates-table td:nth-child(2),
-  .candidates-table th:nth-child(5),
-  .candidates-table td:nth-child(5) {
-    display: none;
+  /* Keep all columns visible — the table-container scrolls horizontally. */
+  .candidates-table {
+    min-width: 760px;
   }
 
   .candidate-skills-btn {
-    max-width: 200px;
+    max-width: 220px;
     padding: 4px 6px;
   }
 }

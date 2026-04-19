@@ -269,13 +269,9 @@
     width: 100%;
   }
 
-  .positions-table th:nth-child(2),
-  .positions-table td:nth-child(2),
-  .positions-table th:nth-child(5),
-  .positions-table td:nth-child(5),
-  .positions-table th:nth-child(6),
-  .positions-table td:nth-child(6) {
-    display: none;
+  /* Keep all columns visible — table-container already scrolls horizontally. */
+  .positions-table {
+    min-width: 820px;
   }
 }
 
