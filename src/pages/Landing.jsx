@@ -569,7 +569,7 @@ function Footer() {
 
 export default function Landing() {
   return (
-    <div className="landing">
+    <div className="landing" data-theme="light">
       <LandingNav />
       <Hero />
       <HowItWorks />
