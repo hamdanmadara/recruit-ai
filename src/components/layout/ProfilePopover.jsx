@@ -4,10 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '../ui/ThemeToggle';
 import './ProfilePopover.css';
 
-export default function ProfilePopover({ collapsed }) {
+export default function ProfilePopover({ collapsed, onOpenChange }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    onOpenChange?.(open);
+  }, [open, onOpenChange]);
 
   useEffect(() => {
     const onOutside = (e) => {

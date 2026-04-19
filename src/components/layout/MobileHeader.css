@@ -65,13 +65,19 @@
   bottom: 0;
   z-index: 301;
   width: 280px;
+  height: 100vh;
   animation: slideIn 0.25s ease-out;
 }
 
 .mobile-drawer .sidebar {
   display: flex !important;
   width: 100% !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  height: 100vh !important;
   border-radius: 0;
+  z-index: auto !important;
 }
 
 .mobile-close-btn {

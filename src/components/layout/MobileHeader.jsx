@@ -22,9 +22,7 @@ export default function MobileHeader() {
             <button className="mobile-close-btn" onClick={() => setOpen(false)}>
               <X size={20} />
             </button>
-            <div onClick={() => setOpen(false)}>
-              <Sidebar inDrawer />
-            </div>
+            <Sidebar inDrawer onNavigate={() => setOpen(false)} />
           </div>
         </>
       )}

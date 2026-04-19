@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   BarChart3,
@@ -6,8 +7,8 @@ import {
   Star,
   Settings,
   CreditCard,
-  PanelLeftClose,
-  PanelLeftOpen,
+  Pin,
+  PinOff,
 } from 'lucide-react';
 import { sidebarNavItems } from '../../data/mockData';
 import { useSidebar } from '../../context/SidebarContext';
@@ -15,20 +16,32 @@ import ProfilePopover from './ProfilePopover';
 import './Sidebar.css';
 
 const iconMap = {
-  BarChart3: BarChart3,
-  Briefcase: Briefcase,
-  Bot: Bot,
-  Star: Star,
-  Settings: Settings,
-  CreditCard: CreditCard,
+  BarChart3,
+  Briefcase,
+  Bot,
+  Star,
+  Settings,
+  CreditCard,
 };
 
-export default function Sidebar({ inDrawer = false }) {
+export default function Sidebar({ inDrawer = false, onNavigate }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { collapsed, toggleCollapsed } = useSidebar();
+  const { pinned, togglePinned } = useSidebar();
+  const [hovered, setHovered] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
-  const isCollapsed = inDrawer ? false : collapsed;
+  // Keep sidebar expanded while profile popover is open so it doesn't
+  // collapse out from under the user.
+  const expandedByHover = hovered || profileOpen;
+
+  // Desktop: collapsed unless pinned, hovered, or profile popover is open.
+  const isCollapsed = inDrawer ? false : !pinned && !expandedByHover;
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    onNavigate?.();
+  };
 
   const isActive = (path) => {
     if (path === '/dashboard') return location.pathname === '/dashboard';
@@ -42,8 +55,12 @@ export default function Sidebar({ inDrawer = false }) {
     return location.pathname.startsWith(path);
   };
 
-  return (
-    <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+  const sidebar = (
+    <aside
+      className={`sidebar ${isCollapsed ? 'collapsed' : ''} ${expandedByHover && !pinned ? 'hover-expanded' : ''}`}
+      onMouseEnter={() => !inDrawer && setHovered(true)}
+      onMouseLeave={() => !inDrawer && setHovered(false)}
+    >
       <div className="sidebar-brand">
         {isCollapsed ? (
           <span className="sidebar-brand-icon">
@@ -51,21 +68,19 @@ export default function Sidebar({ inDrawer = false }) {
           </span>
         ) : (
           <>
-            Recruit<span>AI</span>
-          </>
-        )}
-        {!inDrawer && (
-          <button
-            className="sidebar-collapse-btn"
-            onClick={toggleCollapsed}
-            title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {isCollapsed ? (
-              <PanelLeftOpen size={16} />
-            ) : (
-              <PanelLeftClose size={16} />
+            <span className="sidebar-brand-text">
+              Recruit<span>AI</span>
+            </span>
+            {!inDrawer && (
+              <button
+                className={`sidebar-pin-btn ${pinned ? 'pinned' : ''}`}
+                onClick={togglePinned}
+                title={pinned ? 'Unpin sidebar' : 'Pin sidebar open'}
+              >
+                {pinned ? <PinOff size={15} /> : <Pin size={15} />}
+              </button>
             )}
-          </button>
+          </>
         )}
       </div>
 
@@ -77,14 +92,13 @@ export default function Sidebar({ inDrawer = false }) {
             <div
               key={item.path}
               className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}
-              onClick={() => navigate(item.path)}
-              title={isCollapsed ? item.label : undefined}
+              onClick={() => handleNavigate(item.path)}
             >
               <span className="sidebar-item-icon">
                 <Icon size={18} />
               </span>
-              {!isCollapsed && <span className="sidebar-item-label">{item.label}</span>}
-              {!isCollapsed && item.badge && (
+              <span className="sidebar-item-label">{item.label}</span>
+              {item.badge && !isCollapsed && (
                 <span className="sidebar-badge">{item.badge}</span>
               )}
             </div>
@@ -100,20 +114,32 @@ export default function Sidebar({ inDrawer = false }) {
             <div
               key={item.path}
               className={`sidebar-item sidebar-item--disabled ${isActive(item.path) ? 'active' : ''}`}
-              title={isCollapsed ? item.label : undefined}
             >
               <span className="sidebar-item-icon">
                 <Icon size={18} />
               </span>
-              {!isCollapsed && <span className="sidebar-item-label">{item.label}</span>}
+              <span className="sidebar-item-label">{item.label}</span>
             </div>
           );
         })}
       </nav>
 
       <div className="sidebar-bottom">
-        <ProfilePopover collapsed={isCollapsed} />
+        <ProfilePopover collapsed={isCollapsed} onOpenChange={setProfileOpen} />
       </div>
     </aside>
+  );
+
+  if (inDrawer) return sidebar;
+
+  // Desktop: host reserves the layout slot (88px collapsed, 260px pinned).
+  // The sidebar itself is position:fixed so hover-expand overlays content
+  // instead of pushing it.
+  return (
+    <div
+      className={`sidebar-host ${pinned ? 'pinned' : ''} ${expandedByHover ? 'hovered' : ''}`}
+    >
+      {sidebar}
+    </div>
   );
 }

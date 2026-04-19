@@ -1,28 +1,46 @@
-.sidebar {
+/* ── Host slot: reserves the layout width so the fixed sidebar doesn't
+   push/pull the main content on hover-expand. ── */
+.sidebar-host {
+  width: 88px;
+  flex-shrink: 0;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-host.pinned,
+.sidebar-host.hovered {
   width: 260px;
+}
+
+/* ── Sidebar (fixed to viewport) ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 88px;
+  height: 100vh;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  height: 100vh;
-  position: sticky;
-  top: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 30;
 }
 
-.sidebar.collapsed {
-  width: 72px;
+/* Pinned or hover-expanded: full width. */
+.sidebar:not(.collapsed) {
+  width: 260px;
 }
+
 
 /* ── Brand ── */
 .sidebar-brand {
-  padding: 0 20px;
+  padding: 0 16px;
   height: 73px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid var(--border);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 20px;
@@ -34,15 +52,14 @@
   white-space: nowrap;
 }
 
+.sidebar-brand-text span,
 .sidebar-brand span {
   color: var(--accent);
 }
 
 .sidebar.collapsed .sidebar-brand {
-  padding: 0 0;
+  padding: 0;
   justify-content: center;
-  gap: 0;
-  flex-direction: column;
 }
 
 .sidebar-brand-icon {
@@ -57,31 +74,32 @@
   color: var(--accent);
 }
 
-/* ── Collapse button ── */
-.sidebar-collapse-btn {
+/* ── Pin button ── */
+.sidebar-pin-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 6px;
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
   transition: all 0.15s;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
-.sidebar-collapse-btn:hover {
+.sidebar-pin-btn:hover {
   background: var(--hover);
   color: var(--text-primary);
+  border-color: var(--border);
 }
 
-.sidebar.collapsed .sidebar-collapse-btn {
-  margin-left: 0;
-  margin-top: 4px;
+.sidebar-pin-btn.pinned {
+  color: var(--primary-light);
+  background: var(--primary-glow);
+  border-color: var(--primary-border);
 }
 
 /* ── Section labels ── */
@@ -102,11 +120,6 @@
   padding: 0 8px;
 }
 
-.sidebar.collapsed .sidebar-nav {
-  padding: 0 8px;
-  align-items: center;
-}
-
 .sidebar.collapsed .sidebar-nav:first-of-type {
   padding-top: 12px;
 }
@@ -120,7 +133,7 @@
   font-size: 14px;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: background 0.15s, color 0.15s;
   font-weight: 500;
   user-select: none;
   white-space: nowrap;
@@ -147,10 +160,12 @@
   color: var(--text-secondary);
 }
 
+/* Collapsed: icon + tiny label stacked vertically */
 .sidebar.collapsed .sidebar-item {
-  justify-content: center;
-  padding: 11px;
-  gap: 0;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 4px;
+  text-align: center;
   width: 100%;
 }
 
@@ -159,7 +174,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7;
+  opacity: 0.75;
   flex-shrink: 0;
 }
 
@@ -170,6 +185,14 @@
 .sidebar-item-label {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sidebar.collapsed .sidebar-item-label {
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 600;
+  max-width: 100%;
+  letter-spacing: 0.1px;
 }
 
 .sidebar-badge {
@@ -193,8 +216,11 @@
   padding: 12px 8px;
 }
 
-/* ── Mobile: hide sidebar ── */
+/* ── Mobile: hide desktop sidebar (drawer takes over) ── */
 @media (max-width: 768px) {
+  .sidebar-host {
+    display: none;
+  }
   .sidebar {
     display: none;
   }

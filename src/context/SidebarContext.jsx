@@ -1,24 +1,34 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback } from 'react';
 
 const SidebarContext = createContext();
-
-const TABLET_BP = 1024;
+const PIN_KEY = 'sidebar-pinned';
 
 export function SidebarProvider({ children }) {
-  const [collapsed, setCollapsed] = useState(() => window.innerWidth <= TABLET_BP);
+  const [pinned, setPinned] = useState(() => {
+    try {
+      return localStorage.getItem(PIN_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  });
 
-  useEffect(() => {
-    const onResize = () => {
-      if (window.innerWidth <= TABLET_BP) setCollapsed(true);
-    };
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+  const togglePinned = useCallback(() => {
+    setPinned((p) => {
+      const next = !p;
+      try { localStorage.setItem(PIN_KEY, String(next)); } catch { /* noop */ }
+      return next;
+    });
   }, []);
 
-  const toggleCollapsed = useCallback(() => setCollapsed((p) => !p), []);
+  // Backward-compat: some callers still read `collapsed` / `toggleCollapsed`.
+  const collapsed = !pinned;
+  const setCollapsed = (v) => setPinned(!v);
+  const toggleCollapsed = togglePinned;
 
   return (
-    <SidebarContext.Provider value={{ collapsed, setCollapsed, toggleCollapsed }}>
+    <SidebarContext.Provider
+      value={{ collapsed, setCollapsed, toggleCollapsed, pinned, togglePinned }}
+    >
       {children}
     </SidebarContext.Provider>
   );
