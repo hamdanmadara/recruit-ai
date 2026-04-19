@@ -49,21 +49,21 @@ function ChatMockHero() {
     <div className="chat-mock">
       <div className="chat-mock-header">
         <div className="chat-mock-dot" />
-        <span>Senior Frontend Developer — 124 resumes</span>
+        <span>Senior Frontend Developer · 124 resumes</span>
       </div>
       <div className="chat-mock-body">
         <div className="chat-mock-msg user">
           Find candidates with 5+ years Angular who also know Java.
         </div>
         <div className="chat-mock-msg bot">
-          Found <strong>8 matches</strong> — here are the top 3:
+          Found <strong>8 matches</strong>. Here are the top 3:
           <div className="chat-mock-candidate">
             <span className="rank">01</span>
             <div className="cand-info">
               <div className="name">Alex Rivera</div>
               <div className="meta">Angular · 7yr &nbsp;·&nbsp; Java · 4yr</div>
               <div className="cand-reason">
-                Highest raw experience on both axes — 7 years Angular, 4
+                Highest raw experience on both axes: 7 years Angular, 4
                 years Java.
               </div>
             </div>
@@ -75,7 +75,7 @@ function ChatMockHero() {
               <div className="name">James Carter</div>
               <div className="meta">Angular · 6yr &nbsp;·&nbsp; Java · 3yr &nbsp;·&nbsp; TypeScript · 5yr</div>
               <div className="cand-reason">
-                Just below Alex on years, but adds 5 years of TypeScript — a
+                Just below Alex on years, but adds 5 years of TypeScript. A
                 well-rounded all-round fit.
               </div>
             </div>
@@ -113,8 +113,8 @@ function Hero() {
         <p className="hero-sub">
           RecruitAI turns your bulk resume pile into a conversation. Drop in
           your applications, browse every candidate ranked with match scores,
-          matched &amp; missing skill breakdowns, and full parsed profiles —
-          then open one chat and ask in plain English, with reasoning attached
+          matched &amp; missing skill breakdowns, and full parsed profiles.
+          Then open one chat and ask in plain English, with reasoning attached
           to every answer.
         </p>
         <div className="hero-ctas">
@@ -152,7 +152,7 @@ function HowItWorks() {
     {
       n: '02',
       title: 'Upload resumes for that role',
-      desc: 'Drop every candidate resume you have for this position — PDFs, Word docs, or a zip. Each one is parsed and indexed against that specific JD.',
+      desc: 'Drop every candidate resume you have for this position: PDFs, Word docs, or a zip. Each one is parsed and indexed against that specific JD.',
     },
     {
       n: '03',
@@ -162,7 +162,7 @@ function HowItWorks() {
     {
       n: '04',
       title: 'Ask anything',
-      desc: 'Query your resume bank in plain English — "5+ years Angular with AWS" — and shortlist directly from the conversation.',
+      desc: 'Query your resume bank in plain English, like "5+ years Angular with AWS", and shortlist directly from the conversation.',
     },
   ];
   return (
@@ -201,7 +201,7 @@ function Features() {
     {
       icon: <Bot size={20} />,
       title: 'Chat with your data',
-      desc: 'Ask "who has 5+ years of Angular and knows AWS" — get ranked results in seconds with reasoning, not opaque scores.',
+      desc: 'Ask "who has 5+ years of Angular and knows AWS" and get ranked results in seconds with reasoning, not opaque scores.',
     },
     {
       icon: <MessageSquareText size={20} />,
@@ -216,7 +216,7 @@ function Features() {
     {
       icon: <Zap size={20} />,
       title: 'Transparent ranking',
-      desc: 'Skill match %, matched & missing tags, AI-written summaries — you always see why a candidate ranks where they do.',
+      desc: 'Skill match %, matched & missing tags, AI-written summaries. You always see why a candidate ranks where they do.',
     },
   ];
   return (
@@ -293,11 +293,11 @@ function ProfileMock() {
         <div className="mock-section-label">Experience</div>
         <div className="exp-row">
           <div className="exp-title">Senior Frontend Developer · Google</div>
-          <div className="exp-period">Jan 2022 — Present · 4 years</div>
+          <div className="exp-period">Jan 2022 - Present · 4 years</div>
         </div>
         <div className="exp-row">
           <div className="exp-title">Frontend Developer · Shopify</div>
-          <div className="exp-period">Jun 2019 — Dec 2021 · 2.5 years</div>
+          <div className="exp-period">Jun 2019 - Dec 2021 · 2.5 years</div>
         </div>
       </div>
 
@@ -413,7 +413,7 @@ function ParsingShowcase() {
             Every resume. Parsed into structure.
           </h2>
           <p className="section-sub">
-            Skills with years, work history, education, contact details — all
+            Skills with years, work history, education, contact details: all
             extracted automatically. An AI summary highlights fit and flags
             gaps, alongside a match score you can actually trust.
           </p>
@@ -465,7 +465,7 @@ function ListingShowcase() {
               <Check size={16} /> Search by name, title, or skill
             </li>
             <li>
-              <Check size={16} /> Filter by status — new, reviewed, shortlisted
+              <Check size={16} /> Filter by status: new, reviewed, shortlisted
             </li>
           </ul>
         </div>
@@ -517,7 +517,7 @@ function Showcase() {
                   <span className="dot green" />
                   <div className="bullet-content">
                     <span>
-                      <strong>James Carter</strong> — AWS Solutions Architect
+                      <strong>James Carter</strong>, AWS Solutions Architect
                       (2023)
                     </span>
                     <span className="bullet-reason">
@@ -530,7 +530,7 @@ function Showcase() {
                   <span className="dot green" />
                   <div className="bullet-content">
                     <span>
-                      <strong>Laura Williams</strong> — AWS Developer Associate
+                      <strong>Laura Williams</strong>, AWS Developer Associate
                       (2024)
                     </span>
                     <span className="bullet-reason">
@@ -543,7 +543,7 @@ function Showcase() {
                   <span className="dot warn" />
                   <div className="bullet-content">
                     <span>
-                      <strong>Sarah Mitchell</strong> — no formal cert
+                      <strong>Sarah Mitchell</strong>, no formal cert
                     </span>
                     <span className="bullet-reason">
                       Mentions AWS in a side project, but nothing credentialed
@@ -570,7 +570,7 @@ function ClosingCTA() {
       <div className="landing-container closing-inner">
         <h2 className="closing-heading">See it with real data.</h2>
         <p className="closing-sub">
-          The demo is the full application — five positions, dozens of
+          The demo is the full application: five positions, dozens of
           candidates, and a live AI chat. No signup required.
         </p>
         <button
