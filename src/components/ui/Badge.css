@@ -9,29 +9,29 @@
 }
 
 .badge-active {
-  background: rgba(46, 213, 115, 0.1);
+  background: var(--success-soft);
   color: var(--accent-green);
 }
 
 .badge-draft {
-  background: rgba(255, 165, 2, 0.1);
+  background: var(--warning-soft);
   color: var(--accent-orange);
 }
 
 .badge-closed {
-  background: rgba(139, 143, 163, 0.1);
+  background: var(--hover);
   color: var(--text-secondary);
 }
 
 .badge-match-high {
-  background: rgba(46, 213, 115, 0.1);
+  background: var(--success-soft);
   color: var(--accent-green);
   font-size: 13px;
   font-weight: 700;
 }
 
 .badge-match-medium {
-  background: rgba(255, 165, 2, 0.1);
+  background: var(--warning-soft);
   color: var(--accent-orange);
   font-size: 13px;
   font-weight: 700;

@@ -83,11 +83,7 @@
 }
 
 .positions-table thead tr {
-  background: rgba(30, 32, 40, 0.5);
-}
-
-[data-theme='light'] .positions-table thead tr {
-  background: rgba(0, 0, 0, 0.02);
+  background: var(--table-head-bg);
 }
 
 .positions-table th {
@@ -103,7 +99,7 @@
 .positions-table td {
   padding: 16px 20px;
   font-size: 14px;
-  border-bottom: 1px solid rgba(42, 45, 58, 0.3);
+  border-bottom: 1px solid var(--divider);
   vertical-align: middle;
 }
 
@@ -128,6 +124,33 @@
 .position-meta {
   font-size: 12px;
   color: var(--text-muted);
+}
+
+.position-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  max-width: 260px;
+}
+
+.position-skills-more {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  background: transparent;
+  border: 1px dashed var(--border);
+  padding: 2px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.position-skills-more:hover {
+  color: var(--primary-light);
+  border-color: var(--primary);
+  background: var(--primary-glow);
 }
 
 .resume-count {
@@ -200,6 +223,12 @@
   animation: dropdownFadeIn 0.15s ease-out;
 }
 
+/* Fixed to viewport so last rows aren't clipped by .table-container overflow */
+.action-menu.action-menu-fixed {
+  position: fixed;
+  z-index: 1000;
+}
+
 @keyframes dropdownFadeIn {
   from { opacity: 0; transform: translateY(-6px); }
   to { opacity: 1; transform: translateY(0); }
@@ -227,7 +256,7 @@
 }
 
 .action-menu-item.danger:hover {
-  background: rgba(255, 71, 87, 0.1);
+  background: var(--danger-soft);
 }
 
 @media (max-width: 768px) {
@@ -240,10 +269,12 @@
     width: 100%;
   }
 
-  .positions-table th:nth-child(4),
-  .positions-table td:nth-child(4),
+  .positions-table th:nth-child(2),
+  .positions-table td:nth-child(2),
   .positions-table th:nth-child(5),
-  .positions-table td:nth-child(5) {
+  .positions-table td:nth-child(5),
+  .positions-table th:nth-child(6),
+  .positions-table td:nth-child(6) {
     display: none;
   }
 }

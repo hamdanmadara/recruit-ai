@@ -1,10 +1,10 @@
 .welcome-banner {
   background: linear-gradient(
     135deg,
-    rgba(108, 92, 231, 0.12),
-    rgba(0, 210, 211, 0.08)
+    var(--primary-soft),
+    var(--accent-soft)
   );
-  border: 1px solid rgba(108, 92, 231, 0.2);
+  border: 1px solid var(--primary-border);
   border-radius: 14px;
   padding: 28px 32px;
   display: flex;
@@ -52,7 +52,7 @@
   align-items: center;
   gap: 12px;
   padding: 14px 0;
-  border-bottom: 1px solid rgba(42, 45, 58, 0.5);
+  border-bottom: 1px solid var(--divider);
 }
 
 .activity-item.last {

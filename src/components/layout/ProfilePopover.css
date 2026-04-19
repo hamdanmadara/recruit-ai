@@ -179,5 +179,5 @@
 }
 
 .profile-popover-logout:hover {
-  background: rgba(255, 71, 87, 0.1);
+  background: var(--danger-soft);
 }

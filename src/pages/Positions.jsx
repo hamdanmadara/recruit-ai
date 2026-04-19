@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Plus,
@@ -20,20 +20,54 @@ import './Positions.css';
 export default function Positions() {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
+  const [menuFixedStyle, setMenuFixedStyle] = useState(null);
+  const [expandedSkills, setExpandedSkills] = useState(null);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
   const menuRef = useRef(null);
 
+  const closeMenu = useCallback(() => {
+    setOpenMenu(null);
+    setMenuFixedStyle(null);
+  }, []);
+
+  const toggleActionMenu = useCallback(
+    (posId, e) => {
+      if (openMenu === posId) {
+        closeMenu();
+        return;
+      }
+      const rect = e.currentTarget.getBoundingClientRect();
+      setOpenMenu(posId);
+      setMenuFixedStyle({
+        top: rect.bottom + 6,
+        right: Math.max(12, window.innerWidth - rect.right),
+      });
+    },
+    [openMenu, closeMenu]
+  );
+
   useEffect(() => {
     const handleClick = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setOpenMenu(null);
+        closeMenu();
       }
     };
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
-  }, []);
+  }, [closeMenu]);
+
+  useEffect(() => {
+    if (openMenu == null) return undefined;
+    const onScrollOrResize = () => closeMenu();
+    window.addEventListener('scroll', onScrollOrResize, true);
+    window.addEventListener('resize', onScrollOrResize);
+    return () => {
+      window.removeEventListener('scroll', onScrollOrResize, true);
+      window.removeEventListener('resize', onScrollOrResize);
+    };
+  }, [openMenu, closeMenu]);
 
   const filtered = positions
     .filter((p) => {
@@ -112,6 +146,7 @@ export default function Positions() {
           <thead>
             <tr>
               <th>Position</th>
+              <th>Skills</th>
               <th>Status</th>
               <th>Resumes</th>
               <th>Shortlisted</th>
@@ -126,6 +161,33 @@ export default function Positions() {
                   <div className="position-name">{pos.title}</div>
                   <div className="position-meta">
                     {pos.department} &middot; {pos.location}
+                  </div>
+                </td>
+                <td>
+                  <div className="position-skills">
+                    {(() => {
+                      const skills = pos.skills ?? [];
+                      const isExpanded = expandedSkills === pos.id;
+                      const visible = isExpanded ? skills : skills.slice(0, 3);
+                      return (
+                        <>
+                          {visible.map((s, i) => (
+                            <Badge key={i} variant="skill">{s}</Badge>
+                          ))}
+                          {skills.length > 3 && (
+                            <button
+                              type="button"
+                              className="position-skills-more"
+                              onClick={() =>
+                                setExpandedSkills(isExpanded ? null : pos.id)
+                              }
+                            >
+                              {isExpanded ? 'Show less' : `+${skills.length - 3}`}
+                            </button>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
                 </td>
                 <td>
@@ -152,19 +214,18 @@ export default function Positions() {
                 </td>
                 <td className="actions-cell" ref={openMenu === pos.id ? menuRef : null}>
                   <button
+                    type="button"
                     className="action-dots"
-                    onClick={() =>
-                      setOpenMenu(openMenu === pos.id ? null : pos.id)
-                    }
+                    onClick={(e) => toggleActionMenu(pos.id, e)}
                   >
                     <MoreVertical size={16} />
                   </button>
-                  {openMenu === pos.id && (
-                    <div className="action-menu">
+                  {openMenu === pos.id && menuFixedStyle && (
+                    <div className="action-menu action-menu-fixed" style={menuFixedStyle}>
                       <div
                         className="action-menu-item"
                         onClick={() => {
-                          setOpenMenu(null);
+                          closeMenu();
                           navigate('/chat');
                         }}
                       >
@@ -173,22 +234,19 @@ export default function Positions() {
                       <div
                         className="action-menu-item"
                         onClick={() => {
-                          setOpenMenu(null);
+                          closeMenu();
                           navigate(`/positions/${pos.id}/candidates`);
                         }}
                       >
                         <Users size={14} /> View Candidates
                       </div>
-                      <div className="action-menu-item" onClick={() => setOpenMenu(null)}>
+                      <div className="action-menu-item" onClick={closeMenu}>
                         <Pencil size={14} /> Edit Position
                       </div>
-                      <div className="action-menu-item" onClick={() => setOpenMenu(null)}>
+                      <div className="action-menu-item" onClick={closeMenu}>
                         <Upload size={14} /> Upload Resumes
                       </div>
-                      <div
-                        className="action-menu-item danger"
-                        onClick={() => setOpenMenu(null)}
-                      >
+                      <div className="action-menu-item danger" onClick={closeMenu}>
                         <Trash2 size={14} /> Delete
                       </div>
                     </div>

@@ -22,6 +22,130 @@
   font-weight: 500;
 }
 
+.candidate-skills-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.15s;
+  max-width: 340px;
+}
+
+.candidate-skills-btn:hover {
+  border-color: var(--border);
+  background: var(--hover);
+}
+
+.skill-match-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-match-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+}
+
+.skill-match-hero.tier-high {
+  background: var(--success-soft);
+  border-color: var(--success-border);
+}
+
+.skill-match-hero.tier-medium {
+  background: var(--warning-soft);
+  border-color: var(--warning-border);
+}
+
+.skill-match-hero.tier-low {
+  background: var(--danger-soft);
+  border-color: var(--danger-border);
+}
+
+.skill-match-percent-lg {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.tier-high .skill-match-percent-lg { color: var(--accent-green); }
+.tier-medium .skill-match-percent-lg { color: var(--accent-orange); }
+.tier-low .skill-match-percent-lg { color: var(--accent-red); }
+
+.skill-match-caption {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.skill-match-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-match-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skill-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+
+.skill-pill.matched {
+  background: var(--success-soft);
+  color: var(--accent-green);
+  border-color: var(--success-border);
+}
+
+.skill-pill.missing {
+  background: var(--danger-soft);
+  color: var(--accent-red);
+  border-color: var(--danger-border);
+}
+
+.skill-pill.additional {
+  background: var(--input-bg);
+  color: var(--text-secondary);
+}
+
+.skill-empty {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 .match-score {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
@@ -95,8 +219,13 @@
 @media (max-width: 768px) {
   .candidates-table th:nth-child(2),
   .candidates-table td:nth-child(2),
-  .candidates-table th:nth-child(3),
-  .candidates-table td:nth-child(3) {
+  .candidates-table th:nth-child(5),
+  .candidates-table td:nth-child(5) {
     display: none;
+  }
+
+  .candidate-skills-btn {
+    max-width: 200px;
+    padding: 4px 6px;
   }
 }

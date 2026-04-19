@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   ArrowLeft,
   MessageSquare,
@@ -15,7 +15,7 @@ import Card from '../components/ui/Card';
 import Avatar from '../components/ui/Avatar';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
-import { candidateProfile } from '../data/mockData';
+import { candidateProfile, candidates } from '../data/mockData';
 import './ResumeDetail.css';
 
 function ProfileCard({ profile }) {
@@ -153,14 +153,24 @@ function AISummaryCard({ summary, assessments }) {
 
 export default function ResumeDetail() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const profile = candidateProfile;
+  const candidateRow = candidates.find((c) => c.id === id);
+
+  const goBack = () => {
+    if (candidateRow?.positionId != null) {
+      navigate(`/positions/${candidateRow.positionId}/candidates`);
+    } else {
+      navigate('/positions');
+    }
+  };
 
   return (
     <AppLayout>
       <div className="page-header">
         <div className="page-header-left">
           <h1 className="page-title">
-            <span className="back-arrow" onClick={() => navigate('/positions')}>
+            <span className="back-arrow" onClick={goBack}>
               <ArrowLeft size={20} />
             </span>
             Candidate Profile

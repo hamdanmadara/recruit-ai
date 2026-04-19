@@ -138,11 +138,7 @@
 
 .exp-item {
   padding: 16px 0;
-  border-bottom: 1px solid rgba(42, 45, 58, 0.5);
-}
-
-[data-theme='light'] .exp-item {
-  border-bottom-color: var(--border);
+  border-bottom: 1px solid var(--divider);
 }
 
 .exp-item.last {
@@ -276,12 +272,12 @@
 }
 
 .assessment-active {
-  background: rgba(46, 213, 115, 0.1);
+  background: var(--success-soft);
   color: var(--accent-green);
 }
 
 .assessment-draft {
-  background: rgba(255, 165, 2, 0.1);
+  background: var(--warning-soft);
   color: var(--accent-orange);
 }
 

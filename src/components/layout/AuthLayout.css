@@ -23,7 +23,7 @@
   width: 400px;
   height: 400px;
   border-radius: 50%;
-  background: rgba(0, 210, 211, 0.08);
+  background: var(--accent-soft);
   filter: blur(80px);
 }
 
@@ -35,7 +35,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: rgba(108, 92, 231, 0.15);
+  background: var(--primary-soft);
   filter: blur(60px);
 }
 
