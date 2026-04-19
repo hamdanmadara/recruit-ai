@@ -100,8 +100,10 @@ function Hero() {
         </h1>
         <p className="hero-sub">
           RecruitAI turns your bulk resume pile into a conversation. Drop in
-          200 applications, open one chat, and ask in plain English — get
-          ranked candidates back with reasoning.
+          your applications, browse every candidate ranked with match scores,
+          matched &amp; missing skill breakdowns, and full parsed profiles —
+          then open one chat and ask in plain English, with reasoning attached
+          to every answer.
         </p>
         <div className="hero-ctas">
           <button
