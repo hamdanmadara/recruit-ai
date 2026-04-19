@@ -62,6 +62,9 @@ function ChatMockHero() {
             <div className="cand-info">
               <div className="name">James Carter</div>
               <div className="meta">Angular · 6yr &nbsp;·&nbsp; Java · 3yr &nbsp;·&nbsp; Docker · 2yr</div>
+              <div className="cand-reason">
+                Longest Angular + Java combo; Docker adds backend ops exposure.
+              </div>
             </div>
             <span className="score">94%</span>
           </div>
@@ -70,6 +73,9 @@ function ChatMockHero() {
             <div className="cand-info">
               <div className="name">Sarah Mitchell</div>
               <div className="meta">Angular · 5yr &nbsp;·&nbsp; React · 3yr &nbsp;·&nbsp; Java · 1yr</div>
+              <div className="cand-reason">
+                Hits the 5-year Angular bar; Java is light but present.
+              </div>
             </div>
             <span className="score">87%</span>
           </div>
@@ -78,6 +84,9 @@ function ChatMockHero() {
             <div className="cand-info">
               <div className="name">Alex Rivera</div>
               <div className="meta">Angular · 7yr &nbsp;·&nbsp; Java · 4yr</div>
+              <div className="cand-reason">
+                Strongest Angular tenure; solid Java; no Docker listed.
+              </div>
             </div>
             <span className="score">78%</span>
           </div>
@@ -499,23 +508,48 @@ function Showcase() {
                 From the shortlist, who has cloud certifications?
               </div>
               <div className="chat-mock-msg bot">
-                <strong>2 candidates</strong> list cloud credentials:
-                <div className="chat-mock-bullet">
+                <strong>2 candidates</strong> list cloud credentials, one
+                doesn't:
+                <div className="chat-mock-bullet with-reason">
                   <span className="dot green" />
-                  <span>
-                    <strong>James Carter</strong> — AWS Solutions Architect
-                    (2023)
-                  </span>
+                  <div className="bullet-content">
+                    <span>
+                      <strong>James Carter</strong> — AWS Solutions Architect
+                      (2023)
+                    </span>
+                    <span className="bullet-reason">
+                      Earned while at Google; backs up 2 years of EKS work on
+                      his CI/CD team.
+                    </span>
+                  </div>
                 </div>
-                <div className="chat-mock-bullet">
+                <div className="chat-mock-bullet with-reason">
                   <span className="dot green" />
-                  <span>
-                    <strong>Laura Williams</strong> — AWS Developer Associate
-                    (2024)
-                  </span>
+                  <div className="bullet-content">
+                    <span>
+                      <strong>Laura Williams</strong> — AWS Developer Associate
+                      (2024)
+                    </span>
+                    <span className="bullet-reason">
+                      Most recent cert; she lists Lambda &amp; S3 as
+                      day-to-day tools.
+                    </span>
+                  </div>
+                </div>
+                <div className="chat-mock-bullet with-reason">
+                  <span className="dot warn" />
+                  <div className="bullet-content">
+                    <span>
+                      <strong>Sarah Mitchell</strong> — no formal cert
+                    </span>
+                    <span className="bullet-reason">
+                      Mentions AWS in a side project, but nothing credentialed
+                      on the resume.
+                    </span>
+                  </div>
                 </div>
                 <div className="chat-mock-note">
-                  Want me to compare their cloud experience side by side?
+                  Want me to compare James and Laura side by side?
                 </div>
               </div>
             </div>
