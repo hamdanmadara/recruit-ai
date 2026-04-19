@@ -60,10 +60,11 @@ function ChatMockHero() {
           <div className="chat-mock-candidate">
             <span className="rank">01</span>
             <div className="cand-info">
-              <div className="name">James Carter</div>
-              <div className="meta">Angular · 6yr &nbsp;·&nbsp; Java · 3yr &nbsp;·&nbsp; Docker · 2yr</div>
+              <div className="name">Alex Rivera</div>
+              <div className="meta">Angular · 7yr &nbsp;·&nbsp; Java · 4yr</div>
               <div className="cand-reason">
-                Longest Angular + Java combo; Docker adds backend ops exposure.
+                Highest raw experience on both axes — 7 years Angular, 4
+                years Java.
               </div>
             </div>
             <span className="score">94%</span>
@@ -71,24 +72,26 @@ function ChatMockHero() {
           <div className="chat-mock-candidate">
             <span className="rank">02</span>
             <div className="cand-info">
-              <div className="name">Sarah Mitchell</div>
-              <div className="meta">Angular · 5yr &nbsp;·&nbsp; React · 3yr &nbsp;·&nbsp; Java · 1yr</div>
+              <div className="name">James Carter</div>
+              <div className="meta">Angular · 6yr &nbsp;·&nbsp; Java · 3yr &nbsp;·&nbsp; TypeScript · 5yr</div>
               <div className="cand-reason">
-                Hits the 5-year Angular bar; Java is light but present.
+                Just below Alex on years, but adds 5 years of TypeScript — a
+                well-rounded all-round fit.
               </div>
             </div>
-            <span className="score">87%</span>
+            <span className="score">88%</span>
           </div>
           <div className="chat-mock-candidate">
             <span className="rank">03</span>
             <div className="cand-info">
-              <div className="name">Alex Rivera</div>
-              <div className="meta">Angular · 7yr &nbsp;·&nbsp; Java · 4yr</div>
+              <div className="name">Sarah Mitchell</div>
+              <div className="meta">Angular · 5yr &nbsp;·&nbsp; Java · 1yr &nbsp;·&nbsp; React · 3yr</div>
               <div className="cand-reason">
-                Strongest Angular tenure; solid Java; no Docker listed.
+                Meets the 5-year Angular bar exactly; Java is light, present
+                only on two recent roles.
               </div>
             </div>
-            <span className="score">78%</span>
+            <span className="score">76%</span>
           </div>
         </div>
       </div>
@@ -332,21 +335,21 @@ function ListingMock() {
     },
     {
       rank: '02',
-      initials: 'SM',
-      name: 'Sarah Mitchell',
-      title: 'Lead Frontend Engineer',
-      exp: '7 yrs',
-      skills: ['React', 'TypeScript', 'Next.js'],
-      score: 87,
-    },
-    {
-      rank: '03',
       initials: 'LW',
       name: 'Laura Williams',
       title: 'Frontend Engineer',
       exp: '4 yrs',
       skills: ['React', 'Redux', 'GraphQL'],
       score: 89,
+    },
+    {
+      rank: '03',
+      initials: 'SM',
+      name: 'Sarah Mitchell',
+      title: 'Lead Frontend Engineer',
+      exp: '7 yrs',
+      skills: ['React', 'TypeScript', 'Next.js'],
+      score: 87,
     },
     {
       rank: '04',
