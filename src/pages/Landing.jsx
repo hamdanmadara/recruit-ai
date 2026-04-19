@@ -17,7 +17,7 @@ function LandingNav() {
     <header className="landing-nav">
       <div className="landing-nav-inner">
         <Link to="/" className="landing-brand">
-          Recruit<span>AI</span>
+          Talent<span>lyn</span>
         </Link>
         <nav className="landing-nav-links">
           <a href="#how">How it works</a>
@@ -111,7 +111,7 @@ function Hero() {
           Start asking questions.
         </h1>
         <p className="hero-sub">
-          RecruitAI turns your bulk resume pile into a conversation. Drop in
+          Talentlyn turns your bulk resume pile into a conversation. Drop in
           your applications, browse every candidate ranked with match scores,
           matched &amp; missing skill breakdowns, and full parsed profiles.
           Then open one chat and ask in plain English, with reasoning attached
@@ -590,12 +590,12 @@ function Footer() {
       <div className="landing-container footer-inner">
         <div>
           <Link to="/" className="landing-brand">
-            Recruit<span>AI</span>
+            Talent<span>lyn</span>
           </Link>
           <p className="footer-tag">Hire smarter. Not harder.</p>
         </div>
         <div className="footer-meta">
-          <span>© 2026 RecruitAI</span>
+          <span>© 2026 Talentlyn</span>
           <span className="sep">·</span>
           <a href="#">Privacy</a>
           <span className="sep">·</span>

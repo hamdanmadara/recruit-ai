@@ -64,12 +64,12 @@ export default function Sidebar({ inDrawer = false, onNavigate }) {
       <div className="sidebar-brand">
         {isCollapsed ? (
           <span className="sidebar-brand-icon">
-            R<span>AI</span>
+            T<span>l</span>
           </span>
         ) : (
           <>
             <span className="sidebar-brand-text">
-              Recruit<span>AI</span>
+              Talent<span>lyn</span>
             </span>
             {!inDrawer && (
               <button

@@ -12,7 +12,7 @@ export default function MobileHeader() {
         <button className="mobile-menu-btn" onClick={() => setOpen(true)}>
           <Menu size={22} />
         </button>
-        <span className="mobile-brand">Recruit<span>AI</span></span>
+        <span className="mobile-brand">Talent<span>lyn</span></span>
       </div>
 
       {open && (

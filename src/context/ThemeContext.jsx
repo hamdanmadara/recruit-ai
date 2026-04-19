@@ -8,13 +8,13 @@ function getSystemTheme() {
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('recruitai-theme') || getSystemTheme();
+    return localStorage.getItem('talentlyn-theme') || getSystemTheme();
   });
 
   // Apply theme to DOM + persist
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('recruitai-theme', theme);
+    localStorage.setItem('talentlyn-theme', theme);
   }, [theme]);
 
   // OS preference change → always update to match device

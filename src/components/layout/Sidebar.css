@@ -52,9 +52,13 @@
   white-space: nowrap;
 }
 
-.sidebar-brand-text span,
-.sidebar-brand span {
-  color: var(--accent);
+.sidebar-brand-text > span,
+.sidebar-brand-icon > span {
+  color: #2D5043;
+}
+
+[data-theme='dark'] .sidebar-brand-text > span {
+  color: #85A1C9;
 }
 
 .sidebar.collapsed .sidebar-brand {
@@ -70,9 +74,6 @@
   color: var(--text-primary);
 }
 
-.sidebar-brand-icon span {
-  color: var(--accent);
-}
 
 /* ── Pin button ── */
 .sidebar-pin-btn {

@@ -7,7 +7,7 @@ export default function AuthLayout({ children, tagline, description, features })
       <div className="auth-left">
         <div className="auth-left-content">
           <div className="auth-brand">
-            Recruit<span>AI</span>
+            Talent<span>lyn</span>
           </div>
           <h1 className="auth-tagline">{tagline}</h1>
           <p className="auth-desc">{description}</p>
